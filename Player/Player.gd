@@ -5,6 +5,8 @@ const ACCELERATION = 500
 const MAX_SPEED = 80
 const FRICTION = 500
 
+@onready var animationPlayer = $AnimationPlayer
+
 func _ready():
 	pass
 
@@ -17,8 +19,13 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
+		if input_vector.x > 0:
+			animationPlayer.play("RunRight")
+		else:
+			animationPlayer.play("RunLeft")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
+		animationPlayer.play("IdleRight")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move_and_slide()
