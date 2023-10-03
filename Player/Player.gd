@@ -10,7 +10,7 @@ const FRICTION = 500
 @onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
-	pass
+	animationTree.active = true
 
 
 func _physics_process(delta):
