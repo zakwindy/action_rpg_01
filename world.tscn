@@ -839,7 +839,7 @@ layer_0/tile_data = PackedInt32Array(262149, 1, 0, 327685, 1, 2, 327686, 65537, 
 y_sort_enabled = true
 
 [node name="Player" parent="YSortedNode" instance=ExtResource("2_ps0jl")]
-position = Vector2(88, 64)
+position = Vector2(72, 56)
 
 [node name="Bushes" type="Node2D" parent="YSortedNode"]
 y_sort_enabled = true
