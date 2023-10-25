@@ -1,14 +1,47 @@
 extends CharacterBody2D
 
-const FRICTION = 200
-const KNOCKBACK = 120
 const EnemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
 
+@export var ACCELERATION = 300
+@export var MAX_SPEED = 50
+@export var FRICTION = 200
+@export var KNOCKBACK = 120
+
+enum {
+	IDLE,
+	WANDER,
+	CHASE
+}
+
+var state = CHASE
+
 @onready var stats = $Stats
+@onready var playerDetectionZone = $PlayerDetectionZone
+@onready var sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	
+	match state:
+		IDLE:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		
+		WANDER:
+			pass
+		
+		CHASE:
+			var player = playerDetectionZone.player
+			if player != null:
+				var direction = global_position.direction_to(player.global_position)
+				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+			sprite.flip_h = velocity.x < 0
+	
 	move_and_slide() 
+
+
+func seek_player():
+	if playerDetectionZone.can_see_player():
+		state = CHASE
 
 
 func _on_hurtbox_area_entered(area):
