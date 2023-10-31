@@ -18,6 +18,7 @@ var state = CHASE
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var sprite = $AnimatedSprite2D
+@onready var hurtbox = $Hurtbox
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -47,6 +48,7 @@ func seek_player():
 func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	velocity = area.knockback_vector * KNOCKBACK
+	hurtbox.create_hit_effect()
 
 
 func _on_stats_no_health():
