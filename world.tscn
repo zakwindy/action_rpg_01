@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dthsa8hft85nb"]
+[gd_scene load_steps=14 format=3 uid="uid://dthsa8hft85nb"]
 
 [ext_resource type="Texture2D" uid="uid://be2n2jkt33yok" path="res://World/DirtTileset.png" id="2_1o0k2"]
 [ext_resource type="PackedScene" uid="uid://dmyqw8ic0bfod" path="res://World/bush.tscn" id="2_npgq7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgc05rbf0ti2r" path="res://World/CliffTileset.png" id="3_wygk6"]
 [ext_resource type="PackedScene" uid="uid://3op2727hdde2" path="res://World/grass.tscn" id="6_mqghe"]
 [ext_resource type="PackedScene" uid="uid://km4mt2ya7b4l" path="res://Enemies/bat.tscn" id="7_dp814"]
+[ext_resource type="PackedScene" uid="uid://28m0nlkp4ua3" path="res://UI/health_ui.tscn" id="8_2m0jk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sceld"]
 texture = ExtResource("2_1o0k2")
@@ -900,3 +901,5 @@ position = Vector2(24, 88)
 
 [node name="Bat5" parent="YSortedNode" instance=ExtResource("7_dp814")]
 position = Vector2(104, 160)
+
+[node name="HealthUI" parent="." instance=ExtResource("8_2m0jk")]
