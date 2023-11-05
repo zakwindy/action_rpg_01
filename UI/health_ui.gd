@@ -14,6 +14,7 @@ func assign_hearts(value):
 	hearts = clamp(value, 0, max_hearts)
 
 func _ready():
+	var stats = PlayerStats
 	self.max_hearts = PlayerStats.max_health
 	self.hearts = PlayerStats.health
-	self.set_hearts.connect("health_changed")
+	stats.health_changed.connect(assign_hearts)
