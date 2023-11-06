@@ -73,3 +73,7 @@ roll={
 2d_physics/layer_5="PlayerHitbox"
 2d_physics/layer_6="EnemyHitbox"
 2d_physics/layer_7="Enemy"
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true

@@ -1,7 +1,13 @@
 extends Node
 
-@export var max_health = 1
-@onready var health = max_health:
+@export var max_health = 1:
+	get:
+		return max_health
+	set(value):
+		max_health = value
+		self.health = min(health, max_health)
+		emit_signal("max_health_changed", max_health)
+var health = max_health:
 	get:
 		return health
 	set(value):
@@ -12,4 +18,8 @@ extends Node
 
 signal no_health
 signal health_changed(value)
+signal max_health_changed(value)
+
+func _ready():
+	self.health = max_health
 
