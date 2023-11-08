@@ -19,6 +19,7 @@ var state = CHASE
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
+@onready var softCollision = $SoftCollision
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -36,6 +37,9 @@ func _physics_process(delta):
 				var direction = global_position.direction_to(player.global_position)
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			sprite.flip_h = velocity.x < 0
+	
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * KNOCKBACK
 	
 	move_and_slide() 
 
